@@ -5,46 +5,55 @@ import About from './About'
 import Contact from './Contact'
 import Notfound from './Notfound'
 import Navbar from './Navbar'
-const App = () => {
+import Products from './Products'
+import Productdetails from './Productdetails'
+
   const router = createBrowserRouter([
     {
       path:'/',
-      element:<div>
-      <Navbar/>
-       <Home/>
-      </div>
-    },
-    {
-      path:'/about',
-      element:<div>
-        <Navbar/>
-        <About/>
-      </div>
-    },
+      element:<Navbar/>,
+      children:[
+        {
+          index:true,
+          element : <Home/>
+        },
 
-    {
-      path:'/contact',
-      element:<div>
-        <Navbar/>
-        <Contact/>
-        </div>
-    },
+        {
+          path:'contact',
+          element : <Contact/>
+        },
 
-     {
-      path:'*',
-      element:<Notfound/>
-    },
+        {
+          path:'about',
+          element : <About/>
+        },
 
+        {
+          path:'products',
+          element: <Products/>
+        },
+
+        {
+          path:'products/:id',
+          element:<Productdetails/>
+        },
+
+        {
+          path:'*',
+          element:<Notfound/>
+        }
+
+      ]
+    }
   ]
-
   )
- 
-  return (
-    <div>
-      <RouterProvider router={router}/> 
+  
+  const App = () => {
 
-    </div>
-  )
-}
+  return <RouterProvider router={router}/> 
+
+  
+  }
+
 
 export default App

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
  
 
  const Child = React.memo(function Child(){
+  
     
     console.log('child rendered')
     return (
